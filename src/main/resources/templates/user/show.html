@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Show user</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+
+    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+</head>
+<!--/*@thymesVar id="user" type="java.util.List"*/-->
+<!--/*@thymesVar id="user" type="com.company.usermongodbwebapp.model.User"*/-->
+<body>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="pannel-group">
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <div class="row" >
+                            <div class="col-md-3">
+                                <h5>First name:</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <p th:text="${user.getFirstName()}">unknow</p>
+                            </div>
+                        </div>
+                        <div class="row" >
+                            <div class="col-md-3">
+                                <h5>Last name:</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <p th:text="${user.getLastName()}">unknow</p>
+                            </div>
+                        </div>
+                        <div class="row" th:if="${not #lists.isEmpty( user.placeOfEmployment )}">
+                            <div class="col-md-3">
+                                <h5>Place of employment:</h5>
+                            </div>
+                            <div class="col-md-9">
+                                <p th:text="${user.getPlaceOfEmployment().getEmployer()}">None</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Age:</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <p th:text="${user.getAge()}">unknow</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Gender:</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <p th:text="${user.getGender()}">Male/Female</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Education</h5>
+                            </div>
+                            <a class="btn btn-default" href="#" th:href="@{'/user/educations/' + ${user.id} }" role="button">Show</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
